@@ -69,7 +69,7 @@ export default function SeeMore() {
       .catch((error) => {
         console.log(error);
       })
-    }, []);
+    }, []); 
 
     // if data is not available return null
     if(!image) return null;

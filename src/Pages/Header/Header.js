@@ -30,10 +30,10 @@ theme.typography.h3 = {
     fontSize: '0.6rem',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '0.8rem',
+    fontSize: '0.6rem',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '1rem',
+    fontSize: '0.9rem',
   },
 };
 
@@ -72,19 +72,15 @@ export default function Header() {
         style={{ backgroundColor: "#131922", color: "white" }}
       >
         <Toolbar>
-          <Typography variant="h3" sx={{ width: {xl: "125px", lg: "100px", md: "100px", sm: "40px"} }}>
+          <Typography variant="h3" sx={{ width: {xl: "100px", lg: "100px", md: "100px", sm: "40px"} }}>
             <Link href="/" sx={{ textDecoration: "none", color: "#fff" }}>
               AMAZON.in
             </Link>
           </Typography>
 
           <LocationOnIcon />
-          <Typography variant="h3" sx={{ width: {xl: "180px", lg: "120px", md: "100px", sm: "60px"} }}>
-              Hello <br></br> 
-              <b>Select Your Address</b>
-            {/* <DialogBox /> */}
-          </Typography>
-
+          <DialogBox />
+          
           <Paper
             component="form"
             sx={{

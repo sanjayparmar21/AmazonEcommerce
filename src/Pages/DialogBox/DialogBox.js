@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box, Typography } from '@mui/material';
 import {createTheme, ThemeProvider} from '@mui/material';
+import axios from 'axios';
 
 // media query for font size
 const theme = createTheme();
@@ -15,16 +16,16 @@ theme.typography.h3 = {
     fontSize: '0.3rem',
   },
   [theme.breakpoints.up('sm')]: {
-    fontSize: '0.5rem',
+    fontSize: '0.4rem',
   },
   [theme.breakpoints.up('md')]: {
     fontSize: '0.6rem',
   },
   [theme.breakpoints.up('lg')]: {
-    fontSize: '0.8rem',
+    fontSize: '0.6rem',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '1rem',
+    fontSize: '0.7rem',
   },
 };
 
@@ -36,6 +37,7 @@ export default function DialogBox() {
     const [open, setOpen] = useState(false);
     // hooks for data insertion
     const [pinCode, setPinCode] = useState('');
+    const [areaName, setAreaName] = useState('');
     // hooks for validation
     const [formValidation, setFormValidation] = useState(null);
 
@@ -77,6 +79,18 @@ export default function DialogBox() {
         return;
       }
 
+      const url = `https://api.postalpincode.in/pincode/${pinCode}`;
+      // data insertion using post method
+      axios.get(url)
+      .then((response) => {
+        setAreaName(response.data[0].PostOffice[0].Name);
+        localStorage.setItem("areaName", response.data[0].PostOffice[0].Name);
+        console.log(response);
+      })
+      .catch((error) => {
+          console.log(error);
+      })
+
       localStorage.setItem("pincode", pinCode);
       handleClose();
     }
@@ -86,9 +100,11 @@ export default function DialogBox() {
         <ThemeProvider theme={theme}>
           <Box>
             <Button onClick={handleClickOpen}>
-              <Typography variant="h3" sx={{ width: {xl: "180px", lg: "120px", md: "100px", sm: "60px"} }}>
+              <Typography variant="h3" sx={{ width: {xl: "120px", lg: "110px", md: "105px", sm: "72px", xs: "58px"} }}>
                 {
-                  localStorage.getItem("pincode") !== null ? <p style={{ color: "white" }}> Your delivery address is: {localStorage.getItem("pincode")} </p> :  <p style={{ color: "white" }}>Hello <br></br> <b>Select Your Address</b></p>
+                  localStorage.getItem("pincode") !== null ? 
+                  <p style={{ color: "white" }}> Deliver To: <br></br>{localStorage.getItem("pincode")} {localStorage.getItem("areaName")} </p> : 
+                  <p style={{ color: "white" }}>Hello <br></br> <b>Select Your Address</b></p>
                 }
               </Typography>
             </Button>
