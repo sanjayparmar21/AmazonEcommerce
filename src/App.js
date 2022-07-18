@@ -16,26 +16,33 @@ import BusinessAccount from './Pages/BusinessAccount/BusinessAccount';
 import SeeMore from './Pages/SeeMore/SeeMore';
 import Cart from './Pages/Cart/Cart';
 import AmazonPay from './Pages/AmazonPay/AmazonPay';
-// import ImageZoom from './Pages/ImageZoom/ImageZoom';
-import DialogBox from './Pages/DialogBox/DialogBox';
+import ImageZoom from './Pages/ImageZoom/ImageZoom';
+import CustomerService from './Pages/CustomerService/CustomerService';
+import Fashion from './Pages/Fashion/Fashion';
+import TodaysDeals from './Pages/TodaysDeals/TodaysDeals';
+
 
 // export default function App() {
-//   return (
+//   return(
 //     <>
-//     <Registration />
-//     <Login />
-
-//       <Header />
-//       <MenuBar />
-//       <ImageSlider />
-//       <Cards />
-//       <BannerImage />
-//       <ImageCarousel />
-//       <SignIn />
-//       <Footer />
+//       <Router>  
+//         <Switch>
+//           <Route path="/">
+//             <Header />
+//             <MenuBar />
+//             <ImageSlider />
+//             <Cards />
+//             <BannerImage />
+//             <ImageCarousel />
+//             <SignIn />
+//             <Footer />
+//           </Route>
+//         </Switch>
+//       </Router>
 //     </>
-//   );
+//   )
 // }
+
 
 export default function App() {
   return(
@@ -47,10 +54,6 @@ export default function App() {
             {/* <Route path="/imageZoom">
               <ImageZoom />
             </Route> */}
-            
-            <Route path="/dialogBox">
-              <DialogBox />
-            </Route>
 
             <Route path="/amazonPay">
               <AmazonPay />
@@ -64,6 +67,14 @@ export default function App() {
               <Cart />
             </Route>
 
+            <Route path="/customerService">
+              <CustomerService />
+            </Route>
+            
+            <Route path="/fashion">
+              <Fashion />
+            </Route>
+
             <Route path="/login">
               <Login />
             </Route>
@@ -74,6 +85,10 @@ export default function App() {
 
             <Route path="/seeMore/:id">
               <SeeMore />
+            </Route>
+
+            <Route path="/todaysDeals">
+              <TodaysDeals />
             </Route>
 
             <Route path="/">

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -13,7 +14,7 @@ import Drawer from '@mui/material/Drawer';
 export default function MenuBar() {
 
   // hook for left navbar
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
         left: false,
   });
 
@@ -70,12 +71,12 @@ export default function MenuBar() {
   );
 
   // hook for left navbar 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  
   const all = 
     <div style={{ color:"white" }}>
         {['left'].map((anchor) => (
@@ -98,7 +99,7 @@ export default function MenuBar() {
           </React.Fragment>
         ))}
       </div>
-  
+
   return (
     <Box>
       <AppBar position="static" style={{ backgroundColor: "#232f3e" }} >
@@ -112,22 +113,21 @@ export default function MenuBar() {
           scrollButtons="auto"
         >
           <Tab label={ all } style={{ width: "110px", fontSize:"12px"}} />
+          <Tab label="Today's Deals" style={{ width: "130px", fontSize:"12px"}} href="/todaysDeals" />
+          <Tab label="Fashion" style={{ width: "70px", fontSize:"12px"}} href="/fashion" />
+          <Tab label="Customer Services" style={{ width: "175px", fontSize:"12px"}} href="/customerService" />
+          <Tab label="Amazon Pay" style={{ width: "115px", fontSize:"12px"}} href="/amazonPay" />
           <Tab label="Best Seller" style={{ width: "118px", fontSize:"12px"}} />
           <Tab label="Mobiles" style={{ width: "60px", fontSize:"12px"}} />
-          <Tab label="Customer Services" style={{ width: "175px", fontSize:"12px"}} />
-          <Tab label="Today's Deals" style={{ width: "130px", fontSize:"12px"}} />
-          <Tab label="Fashion" style={{ width: "70px", fontSize:"12px"}} />
           <Tab label="Electronics" style={{ width: "90px", fontSize:"12px"}} />
           <Tab label="Prime" style={{ width: "60px", fontSize:"12px"}} />
           <Tab label="Home & Kitchen" style={{ width: "145px", fontSize:"12px"}} />
-          <Tab label="Amazon Pay" style={{ width: "115px", fontSize:"12px"}} />
           <Tab label="New Release" style={{ width: "123px", fontSize:"12px"}} />
           <Tab label="Computers" style={{ width: "80px", fontSize:"12px"}} />
           <Tab label="Books" style={{ width: "60px", fontSize:"12px"}} />
           <Tab label="Coupons" style={{ width: "60px", fontSize:"12px"}} />
           <Tab label="Toys & Games" style={{ width: "127px", fontSize:"12px"}} />
           <Tab label="Sell" style={{ width: "50px", fontSize:"12px"}} />
-          {/* <Tab label={<><b style={{fontSize: "10px"}}>JOIN PRIME STARTING 179</b> <b style={{ fontSize: "7px"}}>*Redirects to PrimeVideo.com</b></>} style={{ width: "172px"}} /> */}
         </Tabs>
       
       </AppBar>

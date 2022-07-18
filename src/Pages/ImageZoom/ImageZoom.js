@@ -6,14 +6,16 @@ import { Box } from '@mui/system';
 export default function ImageZoom() {
   return (
    <>
-    <Box>
+      <Box>
         <InnerImageZoom 
             src = "https://m.media-amazon.com/images/I/81T4O-rEI+L._SL1500_.jpg"
-            width = {400}
-            zoomScale = {0.4}
+            width = {500}
+            zoomScale = {0.6}
             fullscreenOnMobile={true}
+            hideHint={true} // default false
+            zoomType="hover"
         />
-    </Box>
+      </Box>
     </>
   )
 }

@@ -15,7 +15,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { createTheme, Link, MenuItem, Select, ThemeProvider } from "@mui/material";
-import DialogBox from "../DialogBox/DialogBox";
+import SelectYourAddress from "../SelectYourAddress/SelectYourAddress";
 
 // media query for font size
 const theme = createTheme();
@@ -33,13 +33,14 @@ theme.typography.h3 = {
     fontSize: '0.6rem',
   },
   [theme.breakpoints.up('xl')]: {
-    fontSize: '0.9rem',
+    fontSize: '0.8rem',
   },
 };
 
 export default function Header() {
   // hooks for get header category data
   const [ headerCategory, setHeaderCategory ] = useState('');
+  const [ selectedValue, setSelectedValue ] = useState('All Categories')
   
   // list of header category API
   const url = "http://localhost:3001/api/header_category?limit=1000";
@@ -57,12 +58,9 @@ export default function Header() {
   // if data is not available return null
   if(!headerCategory) return null;
   
-  // const handleChange = (e) => setHeaderCategory(e.target.value);
-  // const handleChange = (e) => {
-  //     setHeaderCategory(e.target.value);
-  //     console.log(e.target.value);
-  // }
-  // console.log("state: " + headerCategory);
+  const handleChange = (e) => {
+    setSelectedValue(e.target.value);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,14 +70,14 @@ export default function Header() {
         style={{ backgroundColor: "#131922", color: "white" }}
       >
         <Toolbar>
-          <Typography variant="h3" sx={{ width: {xl: "100px", lg: "100px", md: "100px", sm: "40px"} }}>
+          <Typography variant="h3" sx={{ width: {xl: "150px", lg: "100px", md: "100px", sm: "40px"} }}>
             <Link href="/" sx={{ textDecoration: "none", color: "#fff" }}>
               AMAZON.in
             </Link>
           </Typography>
 
           <LocationOnIcon />
-          <DialogBox />
+          <SelectYourAddress />
           
           <Paper
             component="form"
@@ -87,25 +85,27 @@ export default function Header() {
               p: "0px 4px",
               display: "flex",
               alignItems: "center",
-              width: {xl: "1150px", lg: "800px", md: "500px", sm: "400px", xs: "150px"},
+              width: "58vw",
+              // width: {xl: "1000px", lg: "770px", md: "450px", sm: "400px", xs: "150px"},
               height: "40px",
             }}
           >
-            <IconButton sx={{ width: {xl: "80px", lg: "70px", md: "40px", sm: "30px", xs: "30px"} }} aria-label="menu">
-              {/* <Typography> All </Typography> */}
+            <IconButton sx={{ width: "9vw" }} aria-label="menu"
+            // width: {xl: "180px", lg: "160px", md: "150px", sm: "30px", xs: "30px"}
+            >
               <Select
                 variant="standard"
                 id="selectCategory"
                 label="headerCategory"
-                // value={headerCategory}
-                // onChange={(e) => setHeaderCategory(e.target.value)}
-                // onChange={handleChange}
+                value={selectedValue}
+                onChange={handleChange}
               >
                 {
                   headerCategory.data.items.map ( headerCategoryData => {
                     return(
                       <MenuItem value={headerCategoryData.title} key={headerCategoryData.id} >
                         {headerCategoryData.title}
+                        {/* <Typography variant="h3">{headerCategoryData.title}</Typography> */}
                       </MenuItem>
                     )
                   })

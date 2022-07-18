@@ -1,12 +1,14 @@
+
 import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
 import { Grid, Link } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material";
+import InnerImageZoom from 'react-inner-image-zoom';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 
 // import { useHistory } from "react-router-dom";
 
@@ -32,7 +34,6 @@ theme.typography.h5 = {
 };
 
 export default function Cards() {
-
   // hooks for fetch data
   const [cardData, setCardData] = useState(null);
   // api for data fetching
@@ -56,21 +57,34 @@ export default function Cards() {
       <ThemeProvider theme={theme}>
         <Grid align="center" alignItems="center" justify="center" sx={{ marginTop: {xl: "-20vw", lg: "-20vw", md: "-20vw", sm: "-20vw", xs: "-20vw"} }} >
           <Container maxWidth="xl">
-            <Grid container item xs={12} alignItems="center" justify="center" spacing={{xs: 1, sm: 2, md: 3}} sx={{ mb: 3 }} >    
+            <Grid container item alignItems="center" justify="center" spacing={{xs: 1, sm: 2, md: 3}} sx={{ mb: 3 }} >    
               {
                 cardData.data.items.map( cData => {
                   return(
                     <Grid key={cData.id} container item lg={3} md={4} sm={4} xs={4} >
                       <Card style={{ float: "left" }} sx={{ p: 2, my:2 }} >
                         <Typography variant="h3">{cData.title}</Typography>
-                        <CardMedia
+                        
+                        {/* working code start */}
+                        {/* <CardMedia
                           component="img"
                           sx={{
                             height: {xl: "260px", lg: "210px", md: "190px", sm: "110px", xs: "70px"},
                             width: {xl: "320px", lg: "280px", md: "260px", sm: "180px", xs: "90px"},
                           }}
                           image={cData.image}
-                          alt="https://www.bhubaneswarbuzz.com/wp-content/uploads/2016/05/amazon-india-1.png"
+                          alt="cards"
+                        /> */}
+                        {/* working code end */}
+
+                        <InnerImageZoom
+                          width={320}
+                          // height = {{xl: "260px", lg: "210px", md: "190px", sm: "110px", xs: "70px"}}
+                          // width = {{xl: "320px", lg: "280px", md: "260px", sm: "180px", xs: "90px"}}
+                          src = {cData.image}
+                          zoomScale = {1.5}
+                          hideHint={true}
+                          zoomType="hover"
                         />
                         <Typography variant="body2" style={{ textAlign: "left" }} sx={{ py: 2}} >
                           <Link sx={{ cursor: "pointer" }} href={`/seeMore/${cData.id}` } >{cData.description}</Link>

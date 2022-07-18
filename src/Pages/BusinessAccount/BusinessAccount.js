@@ -1,8 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { Button, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import Link from '@mui/material/Link';
 import { Grid } from "@mui/material";
 import styled from 'styled-components';
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -25,7 +25,7 @@ theme.typography.h5 = {
     [theme.breakpoints.up('sm')]: {
       fontSize: '1.5rem',
     },
-  };
+};
 theme.typography.h6 = {
   [theme.breakpoints.up('xs')]: {
     fontSize: '0.7rem',
@@ -141,7 +141,7 @@ export default function BusinessAccount() {
             <ThemeProvider theme={theme}>
             <Grid>
                 <Typography sx={{ textAlign: "center" }} variant="h3" >Amazon.in</Typography>
-                <Grid container
+                <Grid item container
                     component="form"
                     sx={{
                         backgroundColor: "white",
@@ -154,7 +154,7 @@ export default function BusinessAccount() {
                     noValidate
                     autoComplete="off"
                 >
-                    <Grid sm={6} xs={12} sx={{ p: "2vh" }}>
+                    <Grid item sm={6} xs={12} sx={{ p: "2vh" }}>
                         <Typography variant="h5">Let us create your free Amazon Business account</Typography>
                         <Typography variant="h6"><i>Enter the work email you'd like to use for your business account.</i></Typography>
                         <TextField
@@ -202,7 +202,7 @@ export default function BusinessAccount() {
                             style={{ color: "#0066c0"}}
                             onMouseOver={handleMouseOver}
                             onMouseOut={handleMouseOut}
-                            to="/businessAccount"
+                            // href="/businessAccount"
                         > Why is verification needed? </Link>
                         {
                             hover && 
@@ -213,7 +213,7 @@ export default function BusinessAccount() {
                         }
                     </Grid>
                     
-                    <Grid sx={{ backgroundColor: "#021f3d", color: "#ffffff", p: "2vh 2vh 0vh 2vh" }} sm={6} xs={12} >
+                    <Grid item sx={{ backgroundColor: "#021f3d", color: "#ffffff", p: "2vh 2vh 0vh 2vh" }} sm={6} xs={12} >
                         <Typography variant="h5" sx={{ mb: "2vw"}}>Reshape buying for your organization</Typography>
 
                         <Typography variant="h6">GST Invoice & Bulk Discounts</Typography>
@@ -235,7 +235,7 @@ export default function BusinessAccount() {
                     </Grid>
                 </Grid>
 
-                <Typography className='bottom'>
+                {/* <Typography className='bottom'>
                     <Typography>
                         Need help? Contact
                         <Link> business customer service. </Link>
@@ -247,7 +247,23 @@ export default function BusinessAccount() {
                     <Typography>
                         © 1996–2022, Amazon.com Inc. or its affiliates
                     </Typography>
-                </Typography>
+                </Typography> */}
+
+                <Box className='bottom'>
+                    <Typography>
+                        Need help? Contact
+                        <Link> business customer service. </Link>
+                        Read our
+                        <Link> conditions of use </Link>
+                        and
+                        <Link> Privacy notice.</Link>
+                    </Typography>
+                    <Typography>
+                        © 1996–2022, Amazon.com Inc. or its affiliates
+                    </Typography>
+                </Box>
+
+
             </Grid>
             </ThemeProvider>
         </>
